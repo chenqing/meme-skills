@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meme · 随手沉淀"
+  short_description: "把对话中值得留下的想法、决定与经验整理成记录，按用户授权保存"
+  default_prompt: "使用 $meme-capture 看看当前对话有什么值得留下的内容，先给我草稿。"
