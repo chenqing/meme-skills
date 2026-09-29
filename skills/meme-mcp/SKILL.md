@@ -1,6 +1,6 @@
 ---
 name: meme-mcp
-description: Search, read, recall, and explicitly save or revise the user's Meme records through an already connected Meme MCP server. Use when the user asks to find something in Meme, review their records, save a thought, or use their published personal context. Does not configure credentials or grant additional access.
+description: "Meme MCP operations: search and read records, edit existing text, rename tags, and supply the shared write protocol to Meme skills. Use for direct record operations or tool mechanics; capture handles drafting new notes and review handles reflective recall. Does not configure credentials or grant access."
 ---
 
 # Meme
@@ -29,13 +29,11 @@ Summarize with actual record dates and IDs. Distinguish original text from your 
 
 ## Save or revise when requested
 
-- Save only information the user asked to save, including an explicit ongoing instruction whose scope and trigger are satisfied. A clear save request needs no second confirmation. Installation, write capability, retrieved notes, and inferred preferences do not authorize automatic saves. Use `memo_create` with `text` and a fresh stable `request_key` (for example a UUID). Omit `project_ids` to use the connection's configured default; if a restricted connection has no default, use a known authorized project or ask the user to choose it. Do not send an empty project list to bypass scope. Use `kind: "link"` and `url` only for an actual link record.
-- For edits, read the complete current record first. Call `memo_update` with `id`, `expected_version`, `text` and `request_key`. Preserve unrelated text. Projects, attachments, type, URL and original date are preserved by this operation.
-- Retry an uncertain write with the same key and identical arguments. Do not mint a new key just because a request timed out. A version conflict requires rereading and reconciling; the reconciled payload is a new operation with a new key. An idempotency conflict is not success.
-- For an explicitly requested tag rename, call `tag_rename` in `preview` mode first. Review its affected scope and skipped records against the user's request, then `apply` with `plan_id` and `request_key`. Follow `status` to completion and report partial/conflicting outcomes accurately. Never describe an accepted background job as completed.
-- There is no MCP delete, attachment upload, or project-management tool in this service. Do not improvise a REST workaround with the MCP credential. Direct the user to Meme for unsupported operations.
+Read [the shared write protocol](references/write.md) before any creation, edit, or tag rename. This is the single source for receipts, retries, idempotency and version checks.
 
-Report a write as saved only after a successful non-error tool response with a record ID. Keep acknowledgement short. Agent suggestions are not user decisions; preserve attribution. A read-only request must not create or edit records.
+For a new note requiring selection or drafting, use [meme-capture](../meme-capture/SKILL.md) if installed; it owns the saving workflow. A direct request to save exact supplied text can use the creation protocol here without a separate drafting step. If capture is missing, do not invent its personalization or reminder behavior. One request has one writer; never save again after capture has returned a receipt.
+
+For reflective comparisons of new and old records use [meme-review](../meme-review/SKILL.md) if available; ordinary lookup does not require it. Missing optional companions do not prevent direct MCP reads, exact-text saves or edits.
 
 ## Permission and errors
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Meme · 项目小结"
-  short_description: "整理项目进展、关键取舍与未决事项，区分计划、验证和上线状态"
-  default_prompt: "使用 $meme-project-recap 把当前项目的阶段进展总结成一小段，保存到 Meme。"
+  short_description: "提炼项目进展、取舍和未决事项，明确保存时交给随手沉淀统一执行"
+  default_prompt: "使用 $meme-project-recap 把当前项目的阶段进展总结成一小段，先给我草稿。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meme · 表达偏好"
+  short_description: "管理明确选择的表达习惯与提醒偏好，个人设置与公开规则分开保存"
+  default_prompt: "使用 $meme-shared 把我明确指定的写作偏好保存为当前账户的表达设置，不读取记录样本。"

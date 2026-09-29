@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meme · 记录回看"
+  short_description: "从真实新旧记录中寻找联系、变化和未决问题，有证据才形成发现"
+  default_prompt: "使用 $meme-review 回看昨天的 Meme 记录，找一个值得继续讨论的联系，先不要保存。"
